@@ -1,12 +1,33 @@
 ################################################
+"""
+Code written by Courtney Hilton, December 2019
+courtney.bryce.hilton@gmail.com
+
+tested with python 3.6.7
+
+This script takes as INPUT:
+    1. Parameters below for determining sound properties
+    2. List of unique lexical stress patterns from word_table_creator.py stript
+
+and OUTPUTS:
+    1. soundfiles for all unique stress patterns. e.g. '010.wav' etc
+"""
+################################################
+
+################################################
 ################# Imports ######################
 ################################################
 
 import wave
 import pygame
+import os
 import numpy as np
 import functions as fun
-from word_table_creator import stress_dict, uniques
+from word_table_creator import uniques
+
+# path for current directory
+_thisDir = os.path.abspath(os.path.dirname(__file__))
+os.chdir(_thisDir)
 
 ################################################=
 ################# Parameters ###################
@@ -22,7 +43,6 @@ FREQ = 333 # Hz... 333 is about Ab in pitch
 
 nTones = 3
 finalDuration = DUR1 * nTones
-
 
 rise_fall_ratio1 = 10  # rise_fall_ratio:1 ratio of rise and fall ramps
 rise_fall_ratio2 = 18
@@ -40,16 +60,14 @@ tone2 = fun.amp_mod(rise_fall_ratio1, window_floor, tone2)
 
 tone3 = fun.amp_mod(rise_fall_ratio2, window_floor, tone2)
 
-
 ################################################
 ######### Combination mixing and export ########
 ################################################
 
 # produce soundfile for all unique stress patterns
+outDir = _thisDir + os.sep + 'Output' + os.sep
+os.chdir(outDir)
+
 for stressi in uniques:
-    #filename = ''
-    #for i in range(len(stressi)):
-    #    filename += str(stressi[i])
     fun.export_wav(stressi[1], tone1, stressi[0], SR, NCHAN, 2, tone2, tone3)
 
-# Done!
