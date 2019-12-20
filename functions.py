@@ -1,4 +1,15 @@
 ################################################
+"""
+Code written by Courtney Hilton, December 2019
+courtney.bryce.hilton@gmail.com
+
+tested with python 3.6.7
+
+This script contains custom functions for synthesising rhythmic tones
+"""
+################################################
+
+################################################
 ################# Imports ######################
 ################################################
 import numpy as np
